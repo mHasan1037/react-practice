@@ -1,55 +1,25 @@
-// import React, { useState, useEffect, useReducer } from 'react';
-// import './App.css'
-
-// const initialState = 0;
-
-// const reducer = (state, action) =>{
-//   if(action.type === 'INCREMENT'){
-//     return state + 1
-//   }
-//   if(action.type === 'DECREMENT'){
-//     return state - 1
-//   }
-//    return state;
-// }
-
-// function App() {
-
-//   const [state, dispatch] =  useReducer(reducer, initialState)
-
-//   return (
-//     <div>
-//         <p>{state}</p>
-//         <button onClick={()=> dispatch({type: "INCREMENT"})}>Inc</button>
-//         <button onClick={()=> dispatch({type: "DECREMENT"})}>Dec</button>
-//     </div>
-//   );
-// }
-
-// export default App;
-
-
-import React, { useReducer } from 'react'
-
-const initialState = 0
-
-const reducer = (state, action) =>{
-  if(action.type === 'increase'){
-    return state + 1
-  }
-  if(action.type === 'decrease'){
-    return state - 1
-  }
-}
+import Home from './Components/Home'
+import React from 'react'
+import './App.css'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Contact from './Components/Contact'
+import Blogs from './Components/Blogs'
+import Error from './Components/Error'
+import Navbar from './Components/Navbar'
+import Blog from './Components/Blog'
 
 const App = () => {
-  const [state, dispatch] = useReducer(reducer, initialState)
   return (
-    <div>
-      <p>{state}</p>
-      <button onClick={()=> dispatch({type: 'increase'})}>Inc</button>
-      <button onClick={()=> dispatch({type: 'decrease'})}>Dec</button>
-    </div>
+    <BrowserRouter>
+        <Navbar />
+        <Routes>
+            <Route path="/" element={ <Home />} />
+            <Route path="/blogs" element={ <Blogs />} />
+            <Route path="/blogs/:title" element={<Blog /> } />
+            <Route path="/contact" element={<Contact /> } />
+            <Route path='*' element={<Error />} />
+        </Routes>
+    </BrowserRouter>
   )
 }
 
