@@ -1,25 +1,20 @@
-import Home from './Components/Home'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './App.css'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Contact from './Components/Contact'
-import Blogs from './Components/Blogs'
-import Error from './Components/Error'
-import Navbar from './Components/Navbar'
-import Blog from './Components/Blog'
+import Navbar from './Navbar'
+import Sidebar from './Sidebar'
+import Hero from './Hero'
+import Submenu from './Submenu'
 
 const App = () => {
+
+  
   return (
-    <BrowserRouter>
-        <Navbar />
-        <Routes>
-            <Route path="/" element={ <Home />} />
-            <Route path="/blogs" element={ <Blogs />} />
-            <Route path="/blogs/:title" element={<Blog /> } />
-            <Route path="/contact" element={<Contact /> } />
-            <Route path='*' element={<Error />} />
-        </Routes>
-    </BrowserRouter>
+    <>
+       <Navbar />
+       <Sidebar />
+       <Hero />
+       <Submenu />
+    </>
   )
 }
 
