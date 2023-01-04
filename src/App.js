@@ -1,38 +1,52 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import './App.css'
-import Posts from './Components/Posts'
-import Pagination from './Components/Pagination'
+import ReactPaginate from 'react-paginate'
 
 
 
 const App = () => {
-  const [posts, setPosts] = useState([])
-  const [loading, setLoading] = useState(false)
-  const [currentPage, setCurrentPage] = useState(1)
-  const [postsPerPage] = useState(10)
+  const [users, setUsers] = useState([])
+  const [pageNumber, setPageNumber] = useState(0)
 
   useEffect(()=>{
-    const fetchPosts = async () =>{
-      setLoading(true)
-      const res = await axios.get('https://jsonplaceholder.typicode.com/posts')
-      setPosts(res.data)
-      setLoading(false)
-    }
-    fetchPosts()
+     const fetchData = async () =>{
+        const res = await axios.get('https://jsonplaceholder.typicode.com/posts')
+        setUsers(res.data.slice(0, 5))
+     }
+     fetchData()
   }, [])
 
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost)
 
-  const paginate = (pageNumber) => setCurrentPage(pageNumber)
+  const usersPerPage = 10
+  const pagesVisited = pageNumber * usersPerPage
+  const displayUsers = users
+  .slice(pagesVisited, pagesVisited + usersPerPage)
+  .map((user) => {
+    return (
+      <div className='user' key={user.id}>
+          <h3>{user.id}</h3>
+          <h3>{user.title}</h3>
+          <h3>{user.body}</h3>
+      </div>
+   )
+  })
+
+   const pageCount = Math.ceil(users.length / usersPerPage)
+
+   const changePage = ({ selected }) =>{
+      setPageNumber(selected)
+   }
   
   return (
     <div>
-        <h1>My Blog</h1>
-        <Posts posts={currentPosts} loading={loading} />
-        <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate}/>
+        {displayUsers}
+        <ReactPaginate 
+           previousLabel={"Prev"}
+           nextLabel={"Next"}
+           pageCount={pageCount}
+           onPageChange={changePage}
+        />
     </div>
   )
 }
