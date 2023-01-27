@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-import './App.css'
-import ExpenseTracker from './Components/ExpenseTracker'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import RouterComponent from './Route/RouterComponent';
+
 
 
 
 const App = () => {
   
   return (
-    <>
-       <ExpenseTracker />
-    </>
+    <RouterComponent />
   )
 }
 
