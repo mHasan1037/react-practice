@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://mHasan1037.github.io/react-practice",
   "dependencies": {
+    "@ant-design/icons": "^5.0.1",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@mui/icons-material": "^5.11.9",
@@ -21,6 +22,7 @@
     "react-alice-carousel": "^2.7.0",
     "react-bootstrap": "^2.7.0",
     "react-chartjs-2": "^5.2.0",
+    "react-chat-engine": "^1.11.28",
     "react-circular-progressbar": "^2.1.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.6.0",
