@@ -1,17 +1,37 @@
-import React from 'react'
-import { ChatEngine } from 'react-chat-engine';
+import React, { useState, useEffect } from 'react'
 import './app.css';
-import ChatFeed from './components/ChatFeed';
+import axios from 'axios';
 
 const App = () => {
+
+
+  useEffect(() => {
+    
+    const options = {
+      method: 'GET',
+      url: 'https://livescore6.p.rapidapi.com/matches/v2/list-live',
+      params: {Category: 'Cricket', Timezone: '0'},
+      headers: {
+        'X-RapidAPI-Key': '2A59D01B1AE64DFA9A05EE3742970F30',
+        'X-RapidAPI-Host': 'livescore6.p.rapidapi.com'
+      }
+    };
+    
+    axios.request(options).then(function (response) {
+      console.log(response.data);
+    }).catch(function (error) {
+      console.error(error);
+    });
+
+  }, []);
+
+
+
+
   return (
-    <ChatEngine 
-        height="100vh"
-        projectID="1e2075b2-7f75-4715-977c-13eec7560365"
-        userName="tomholand"
-        userSecret="12345"
-        renderChatFeed={(chatAppProps)=> <ChatFeed {...chatAppProps} /> }
-    />
+    <>
+    
+    </>
   )
 }
 
