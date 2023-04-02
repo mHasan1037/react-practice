@@ -1,20 +1,16 @@
 import React from 'react'
-import Counter from './component/Counter'
-
+import CounterView from './features/counter/CounterView'
 
 const App = () => {
   return (
-    <>
-      <Counter />
-    </>
+    <div>
+       <h1>Counter App</h1>
+        <CounterView />
+    </div>
   )
 }
 
 export default App
-
-
-
-
 
 
 
