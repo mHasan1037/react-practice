@@ -1,12 +1,16 @@
-import React from 'react'
-import CounterView from './features/counter/CounterView'
+import React, { useEffect } from 'react'
+import { stockOptions, fetchData } from './fetchData'
 
 const App = () => {
+  
+
+  const handleData = async() =>{
+    const stockDataa = await fetchData('https://twelve-data1.p.rapidapi.com/cryptocurrencies', stockOptions)
+
+    console.log(stockDataa)
+  }
   return (
-    <div>
-       <h1>Counter App</h1>
-        <CounterView />
-    </div>
+    <div onClick={handleData}>App</div>
   )
 }
 
