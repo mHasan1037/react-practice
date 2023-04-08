@@ -1,10 +1,10 @@
 export const stockOptions = {
     method: 'GET',
-    url: 'https://twelve-data1.p.rapidapi.com/cryptocurrencies',
-    params: {currency_base: 'BTC', format: 'json'},
+    url: 'https://twelve-data1.p.rapidapi.com/price',
+    params: {symbol: 'AMZN', format: 'json', outputsize: '30'},
     headers: {
-      'X-RapidAPI-Key': '00fb27159dmsh80a9fd9f86f4bf6p164394jsn6cbec6d80af1',
-      'X-RapidAPI-Host': 'twelve-data1.p.rapidapi.com'
+        'X-RapidAPI-Key': '00fb27159dmsh80a9fd9f86f4bf6p164394jsn6cbec6d80af1',
+        'X-RapidAPI-Host': 'twelve-data1.p.rapidapi.com'
     }
 }
 
@@ -14,3 +14,5 @@ export const fetchData = async(url, options) =>{
 
     return data
 }
+
+
