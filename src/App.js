@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Todos from './component/Todos'
+import CounterView from './features/counter/CounterView'
 // import { stockOptions, fetchData } from './fetchData'
 // import { IgrFinancialChart } from 'igniteui-react-charts';
 // import { IgrFinancialChartModule } from 'igniteui-react-charts';
@@ -110,7 +110,7 @@ const App = () => {
               )
            })}
         </div> */}
-        <Todos />
+      <CounterView />
     </>
   )
 }
