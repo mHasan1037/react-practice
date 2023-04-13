@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import PostsView from './posts/PostsView'
 
 // import { stockOptions, fetchData } from './fetchData'
 // import { IgrFinancialChart } from 'igniteui-react-charts';
@@ -110,7 +111,7 @@ const App = () => {
               )
            })}
         </div> */}
-s
+      <PostsView />
     </>
   )
 }
