@@ -1,36 +1,48 @@
 import React, { useEffect, useState } from 'react'
-import PostsView from './posts/PostsView'
-
-// import { stockOptions, fetchData } from './fetchData'
-// import { IgrFinancialChart } from 'igniteui-react-charts';
-// import { IgrFinancialChartModule } from 'igniteui-react-charts';
-
-// IgrFinancialChartModule.register();
+import { stockOptions, fetchData } from './fetchData'
+import Echart from './Echart'
 
 const App = () => {
-  // const [data, setData] = useState([])
-  // const [news, setNews] = useState([])
-  // const [chartData, setChartData] = useState([])
+  const [data, setData] = useState([])
+  const [news, setNews] = useState([])
+  const [chartData, setChartData] = useState([])
   
-  // const handleData = async() =>{
-  //   const response = await fetch(`https://api.twelvedata.com/time_series?symbol=AAPL,MSFT,TSLA,META,AMZN&interval=1day&apikey=fc8e2d7c7326415a8e316a8d6a6e853d`)
-  //   const jsonData = await response.json()
-  //   setData(jsonData)
+  const handleData = async() =>{
+    const response = await fetch(`https://api.twelvedata.com/time_series?symbol=AAPL,MSFT,TSLA,META,AMZN&interval=1day&apikey=fc8e2d7c7326415a8e316a8d6a6e853d`)
+    const jsonData = await response.json()
+    setData(jsonData)
 
-  //   const dataStock = jsonData.AAPL.values
-  //   setChartData(dataStock)
-  //   console.log(dataStock)
+    const dataStock = jsonData.AAPL.values
+    setChartData(dataStock)
 
-  //   const newsResponse = await fetch(`https://api.marketaux.com/v1/news/all?symbols=META&filter_entities=true&language=en&api_token=B5mW9vJouRK0TaElXbCLDHClfjEIMP3WWUWr9fkx`)
-  //   const data = await newsResponse.json()
-  //   setNews(data.data)
-  // }
+    const newsResponse = await fetch(`https://api.marketaux.com/v1/news/all?symbols=META&filter_entities=true&language=en&api_token=B5mW9vJouRK0TaElXbCLDHClfjEIMP3WWUWr9fkx`)
+    const data = await newsResponse.json()
+    setNews(data.data)
+  }
 
-  
+  const dateTimeArray = []
+
+  for(let i = 0; i < chartData.length; i++){
+    dateTimeArray.push(chartData[i].datetime)
+  }
+
+
+  const filteredData = []
+
+  const valumesData = []
+
+  for(let i = 0; i < chartData.length; i++){
+     const { datetime, high, low, open, close, volume } = chartData[i]
+
+     filteredData.push([parseFloat(high), parseFloat(low), parseFloat(open), parseFloat(close)])
+     valumesData.push(volume)
+  }
+
+
 
   return (
     <>
-        {/* <div>
+        <div>
             <div onClick={handleData}>
               click
             </div>
@@ -68,30 +80,7 @@ const App = () => {
                     <div>
 
 
-                    <IgrFinancialChart
-                      width="500px"
-                      height="100%"
-                      isToolbarVisible={false}
-                      chartType="Candle"
-                      chartTitle="S&P 500"
-                      titleAlignment="Left"
-                      titleLeftMargin="25"
-                      titleTopMargin="10"
-                      titleBottomMargin="10"
-                      subtitle="CME - CME Delayed Price, Currency in USD"
-                      subtitleAlignment="Left"
-                      subtitleLeftMargin="25"
-                      subtitleTopMargin="5"
-                      subtitleBottomMargin="10"
-                      yAxisLabelLocation="OutsideLeft"
-                      yAxisMode="Numeric"
-                      yAxisTitle="Financial Prices"
-                      yAxisTitleLeftMargin="10"
-                      yAxisTitleRightMargin="5"
-                      yAxisLabelLeftMargin="0"
-                      zoomSliderType="None"
-                      dataSource={chartData}
-                    />
+ 
 
                     </div>
                   </div>
@@ -110,8 +99,8 @@ const App = () => {
                 </div>
               )
            })}
-        </div> */}
-      <PostsView />
+        </div>
+        <Echart filteredData={filteredData} dateTimeArray={dateTimeArray} valumesData={valumesData} />
     </>
   )
 }

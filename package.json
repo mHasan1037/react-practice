@@ -18,6 +18,8 @@
     "axios": "^0.27.2",
     "bootstrap": "^5.2.3",
     "chart.js": "^4.1.2",
+    "echarts": "^5.4.2",
+    "echarts-for-react": "^3.0.2",
     "faker": "^6.6.6",
     "formik": "^2.2.9",
     "igniteui-react-charts": "^18.1.3",
