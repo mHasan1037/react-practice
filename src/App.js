@@ -20,11 +20,6 @@ const App = () => {
     setNews(data.data)
   }
 
-  const dateTimeArray = []
-
-  for(let i = 0; i < chartData.length; i++){
-    dateTimeArray.push(chartData[i].datetime)
-  }
 
 
   const filteredData = []
@@ -34,7 +29,7 @@ const App = () => {
   for(let i = 0; i < chartData.length; i++){
      const { datetime, high, low, open, close, volume } = chartData[i]
 
-     filteredData.push([parseFloat(high), parseFloat(low), parseFloat(open), parseFloat(close)])
+     filteredData.push([parseFloat(high), parseFloat(low), parseFloat(open), parseFloat(close), parseFloat(datetime)])
      valumesData.push(volume)
   }
 
@@ -100,7 +95,7 @@ const App = () => {
               )
            })}
         </div>
-        <Echart filteredData={filteredData} dateTimeArray={dateTimeArray} valumesData={valumesData} />
+        <Echart filteredData={filteredData} chartData={chartData} />
     </>
   )
 }
